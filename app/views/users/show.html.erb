@@ -17,3 +17,33 @@
     <% end %>
 </tbody>
 </table>
+
+<h2>User info</h2>
+<%= image_tag @user.get_profile_image(100,100) %>
+<table>
+  <tbody>
+    <tr>
+      <th>name</th>
+      <th><%= @user.name %></th>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <th><%= @user.introduction %></th>
+    </tr>
+  </tbody>
+</table>
+<%= link_to edit_user_path(current_user.id) do %>
+<i class="fa-solid fa-user-gear" style="color: #77797e;"></i>
+<% end %>
+
+<h2>New book</h2>
+<%= form_with model: @book, url: '/books', method: :post do |f| %>
+  <p>Title</p>
+  <%= f.text_field :title %>
+
+  <p>Opinion</p>
+  <%= f.text_area :body %>
+<br>
+  <%= f.submit ' Create Book ' %>
+<% end %>
+
