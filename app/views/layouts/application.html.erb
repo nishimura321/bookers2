@@ -61,6 +61,11 @@
       </nav>
   </header>
     <main class="mb-auto">
+      <% flash.each do |key, value| %>
+        <div class="flash <%= key %>">
+          <%= value %>
+        </div>
+      <% end %>
     <%= yield %>
     </main>
   </body>
