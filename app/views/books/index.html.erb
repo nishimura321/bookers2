@@ -1,5 +1,11 @@
+<div class="container">
+  <div class="row">
+
+<%= render 'users/leftlist', user: @user, book: @book %>
+
+<div class="col-md-8 offset-md-1">
 <h2>Books</h2>
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th></th>
@@ -17,42 +23,7 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
-<h2>User info</h2>
-<%= image_tag @user.get_profile_image(100,100) %>
-<table>
-  <tbody>
-    <tr>
-      <th>name</th>
-      <th><%= @user.name %></th>
-    </tr>
-    <tr>
-      <th>introduction</th>
-      <th><%= @user.introduction %></th>
-    </tr>
-  </tbody>
-</table>
-<%= link_to edit_user_path(current_user.id) do %>
-<i class="fa-solid fa-user-gear" style="color: #77797e;"></i>
-<% end %>
-
-<h2>New book</h2>
-<% if @book.errors.any? %>
-  <%= @book.errors.count %>error prohibited this obj from being saved:
-  <ul>
-    <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<%= form_with model: @book, url: '/books', method: :post do |f| %>
-  <p>Title</p>
-  <%= f.text_field :title %>
-
-  <p>Opinion</p>
-  <%= f.text_area :body %>
-<br>
-  <%= f.submit ' Create Book ' %>
-<% end %>
-
+  </div>
+</div>
