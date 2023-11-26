@@ -19,7 +19,6 @@ before_action :is_matching_login_user, only: [:edit, :update, :destroy]
 
   def index
     @books = Book.all
-    @user = current_user
     @book = Book.new
   end
 
@@ -55,9 +54,9 @@ before_action :is_matching_login_user, only: [:edit, :update, :destroy]
   end
 
   def is_matching_login_user
-    user = Book.find(params[:id])
-    unless user.id == current_user.id
-    redirect_to books_path(current_user)
+    @book = Book.find(params[:id])
+    unless @book.user == current_user
+    redirect_to books_path
     end
   end
 
