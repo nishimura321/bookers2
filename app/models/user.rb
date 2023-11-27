@@ -5,10 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true, uniqueness: true, length: { in: 2..20 }
-  validates :introduction, length: { maximum: 50 }, if: :is_update?
-  def is_update?
-    persisted?
-  end
+  validates :introduction, length: { maximum: 50}, uniqueness: true
 
    has_many :books, dependent: :destroy
 
